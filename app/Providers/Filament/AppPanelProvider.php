@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Http\Middleware\CheckApprovedUser;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -29,7 +30,15 @@ class AppPanelProvider extends PanelProvider
             ->path('app')
             ->login()
             ->registration()
+            ->passwordReset()
+            // ->emailVerification()
             ->profile()
+            // ->passwordResetRoutePrefix('password-reset')
+            // ->passwordResetRequestRouteSlug('request')
+            // ->passwordResetRouteSlug('reset')
+            // ->emailVerificationRoutePrefix('email-verification')
+            // ->emailVerificationPromptRouteSlug('prompt')
+            // ->emailVerificationRouteSlug('verify')
             ->userMenuItems([
                 MenuItem::make()
                 ->label('Admin')
@@ -41,6 +50,7 @@ class AppPanelProvider extends PanelProvider
                 'primary' => Color::Green,
             ])
             ->font('Poppins')
+            ->spa()
             ->discoverResources(in: app_path('Filament/App/Resources'), for: 'App\\Filament\\App\\Resources')
             ->discoverPages(in: app_path('Filament/App/Pages'), for: 'App\\Filament\\App\\Pages')
             ->pages([
@@ -61,9 +71,10 @@ class AppPanelProvider extends PanelProvider
                 SubstituteBindings::class,
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
-            ])
-            ->authMiddleware([
-                Authenticate::class,
+                ])
+                ->authMiddleware([
+                    CheckApprovedUser::class,
+                    Authenticate::class,
             ]);
     }
 }

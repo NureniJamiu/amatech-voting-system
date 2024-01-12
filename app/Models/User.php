@@ -22,6 +22,7 @@ class User extends Authenticatable
         'email',
         'password',
         'isAdmin',
+        'user_approved_at',
     ];
 
     /**
@@ -43,5 +44,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
         'isAdmin' => 'boolean',
+        'user_approved-at' => 'datetime'
     ];
 }

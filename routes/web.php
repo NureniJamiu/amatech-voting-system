@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\PendingApprovalController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,3 +18,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+// Route::middleware(['auth'])->group(function () {
+//     Route::get('/approval', 'UserApprovalController@approval')->name('approval');
+// });
+
+
+Route::get('/pending-approval', [PendingApprovalController::class, 'index'])->name('pending-approval');
