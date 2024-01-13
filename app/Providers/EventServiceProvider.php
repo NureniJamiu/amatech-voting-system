@@ -21,6 +21,9 @@ class EventServiceProvider extends ServiceProvider
         UserApproved::class => [
             SendUserApprovedNotification::class,
         ],
+        UserRejected::class => [
+            SendUserRejectedNotification::class,
+        ],
     ];
 
     /**

@@ -1,16 +1,18 @@
 <x-mail::message>
-# Congratulations {{$user->name}}
+# Hello <span class="text-capitalize">{{$user->name}}</span>,
 
+We are delighted to inform you that your voter registration has been approved! You are now ready to participate in the upcoming elections.
+<br>
 
-We're thrilled to let you know that your account has been reviewed and approved by our Administrators.
-You can now proceed to your dashboard.
+If you have any questions or need assistance with the voting process, please don't hesitate to contact our support team.
 
+Welcome to our electoral community.
 
 <x-mail::button :url="'127.0.0.1:8000/app/login'" color="success">
-Go to Dashboard
+Proceed to Dashboard
 </x-mail::button>
 
-Thanks,<br>
+Sincerely,<br>
 <!-- {{ config('app.name') }} -->
 Amatech Team
 </x-mail::message>

@@ -11,7 +11,7 @@ use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Mail\Mailables\Address;
 use Illuminate\Queue\SerializesModels;
 
-class UserApprovedCongratulations extends Mailable
+class UserRejectedMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -30,7 +30,7 @@ class UserApprovedCongratulations extends Mailable
     {
         return new Envelope(
             from: new Address('admin@admin.com', 'Admin'),
-            subject: 'Congratulations! Voter Registration Approved.',
+            subject: 'Uh oh! Voter Registration Denied!',
         );
     }
 
@@ -40,7 +40,7 @@ class UserApprovedCongratulations extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'mail.approved',
+            markdown: 'mail.rejected',
         );
     }
 
