@@ -6,6 +6,7 @@ use App\Filament\Resources\UserResource\Pages;
 use App\Filament\Resources\UserResource\RelationManagers;
 use App\Models\User;
 use App\Providers\UserApproved;
+use App\Providers\UserRejected;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -52,13 +53,16 @@ class UserResource extends Resource
                             $record->user_approved_at = true;
                             $record->save();
 
-                            // dispatch email event
+                            // dispatch approve email event
                             UserApproved::dispatch($record);
                         })
                         ->requiresConfirmation(),
                     Tables\Actions\Action::make('Reject')
                         ->action(function (User $record ) {
                             $record->delete();
+
+                            //dispatch reject email event
+                            UserRejected::dispatch($record);
                         })
                         ->color('danger')
                         ->requiresConfirmation()
