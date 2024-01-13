@@ -1,5 +1,5 @@
 <x-mail::message>
-# Hello <span class="text-capitalize">{{$user->name}}</span>,
+# Hello <span style="text-transform: capitalize;">{{$user->name}}</span>,
 
 We are delighted to inform you that your voter registration has been approved! You are now ready to participate in the upcoming elections.
 <br>
