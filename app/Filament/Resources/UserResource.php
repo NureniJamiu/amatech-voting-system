@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\UserResource\Pages;
 use App\Filament\Resources\UserResource\RelationManagers;
 use App\Models\User;
+use App\Providers\UserApproved;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -50,6 +51,9 @@ class UserResource extends Resource
                         ->action(function (User $record ) {
                             $record->user_approved_at = true;
                             $record->save();
+
+                            // dispatch email event
+                            UserApproved::dispatch($record);
                         })
                         ->requiresConfirmation(),
                     Tables\Actions\Action::make('Reject')
