@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('votes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('polls_id')
-                ->constrained('votes')
+            $table->foreignId('poll_id')
+                ->constrained('polls')
                 ->cascadeOnDelete();
             $table->foreignId('position_id')
                 ->constrained('position')
