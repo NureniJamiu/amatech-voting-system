@@ -17,7 +17,7 @@ return new class extends Migration
                 ->constrained('polls')
                 ->cascadeOnDelete();
             $table->foreignId('position_id')
-                ->constrained('position')
+                ->constrained('positions')
                 ->cascadeOnDelete();
             $table->foreignId('user_id')
                 ->constrained('users')
