@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('candidates', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('level');
+            $table->string('image')->nullable();
+            $table->longText('about');
+            $table->foreignId('position_id')
+                ->constrained('positions')
+                ->cascadeOnDelete();
             $table->timestamps();
         });
     }

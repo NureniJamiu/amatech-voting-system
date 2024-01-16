@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('positions', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->foreignId('poll_id')
+                ->constrained('polls')
+                ->cascadeOnDelete();
             $table->timestamps();
         });
     }
