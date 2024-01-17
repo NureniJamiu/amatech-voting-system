@@ -24,4 +24,14 @@ class Vote extends Model
     {
         return $this->belongsTo(Candidate::class);
     }
+
+    public function position(): BelongsTo
+    {
+        return $this->belongsTo(Position::class);
+    }
+
+    public function poll(): BelongsTo
+    {
+        return $this->belongsTo(Poll::class);
+    }
 }
