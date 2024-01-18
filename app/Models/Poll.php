@@ -11,7 +11,7 @@ class Poll extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'description', 'is_active'
+        'title', 'description', 'is_active'
     ];
 
     public function position(): HasMany

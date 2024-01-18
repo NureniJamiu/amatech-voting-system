@@ -13,7 +13,7 @@ class Position extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'poll_id'
+        'name', 'description', 'poll_id'
     ];
 
     public function poll(): BelongsToMany

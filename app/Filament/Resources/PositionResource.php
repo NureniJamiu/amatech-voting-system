@@ -4,8 +4,13 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\PositionResource\Pages;
 use App\Filament\Resources\PositionResource\RelationManagers;
+use App\Models\Poll;
 use App\Models\Position;
 use Filament\Forms;
+use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -17,16 +22,30 @@ class PositionResource extends Resource
 {
     protected static ?string $model = Position::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-flag';
 
     protected static ?string $navigationGroup = 'Ballot Administration';
+
+    protected static ?int $navigationSort = 2;
 
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                //
+                Section::make()
+                    ->description('Establish key roles by defining positions such as President, V. President, Gen. Secretary, Sports Dir., P.R.O e.t.c')
+                    ->aside()
+                    ->schema([
+                        TextInput::make('name'),
+                        Select::make('poll_id')
+                            ->label('Assign to Poll')
+                            ->options(Poll::all()->pluck('title', 'id'))
+                            ->searchable()
+                            ->preload()
+                            ->native(false),
+                        Textarea::make('description'),
+                    ])
             ]);
     }
 
@@ -34,7 +53,8 @@ class PositionResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('name')->searchable(),
+                Tables\Columns\TextColumn::make('description'),
             ])
             ->filters([
                 //
