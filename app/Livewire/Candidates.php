@@ -10,17 +10,15 @@ class Candidates extends Component
     public $candidates;
 
 
+    public function mount()
+    {
+        $this->candidates = Candidate::with('position')->get();
+    }
    
 
     public function render()
     {
         return view('livewire.candidates');
-    }
-
-    public function mount()
-    {
-        // Fetch all candidates from the database
-        $this->candidates = Candidate::with('position')->get();
     }
 
 }

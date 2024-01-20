@@ -1,4 +1,15 @@
 <section>
+    <div wire:ignore>
+        <style>
+            @media (min-width: 768px) {
+                .grid-container {
+                    display: grid;
+                    grid-template-columns: repeat(2, minmax(0, 1fr));
+                    gap: 1rem;
+                }
+            }
+        </style>
+    </div>
     <!-- Card -->
     <div class="w-full shadow-lg rounded-lg text-white mb-5" style="background: #17B169;">
         <div class="px-6 py-5">
@@ -14,7 +25,7 @@
                     <!-- Card header -->
                     <div class="w-full sm:flex justify-between items-center md:items-start mb-3">
                         <!-- Title -->
-                        <h2 class="text-2xl font-extrabold text-gray-50 truncate mb-2 md:mb-1">2024 Amatech Lasu SEC & SLC Election</h2>
+                        <h2 class="text-2xl font-extrabold text-gray-50 truncate mb-2 md:mb-1">2024 Amatech LASU SRC Election</h2>
                         <!-- Voters and Candidates Count -->
                         <div class="hidden flex-shrink-0 md:flex items-center space-x-3 sm:ml-2 gap-3">
 
@@ -37,7 +48,7 @@
                                         <path d="M5.082 14.254a8.287 8.287 0 0 0-1.308 5.135 9.687 9.687 0 0 1-1.764-.44l-.115-.04a.563.563 0 0 1-.373-.487l-.01-.121a3.75 3.75 0 0 1 3.57-4.047ZM20.226 19.389a8.287 8.287 0 0 0-1.308-5.135 3.75 3.75 0 0 1 3.57 4.047l-.01.121a.563.563 0 0 1-.373.486l-.115.04c-.567.2-1.156.349-1.764.441Z" />
                                     </svg>
 
-                                    <span class="text-xl">13</span>
+                                    <span class="text-xl">{{ $candidates_count}}</span>
                                 </div>
                                 <span>Candidates</span>
                             </div>
@@ -47,7 +58,12 @@
                     <div class="flex items-end justify-between whitespace-normal">
                         <!-- Paragraph -->
                         <div class="max-w-md text-indigo-100">
-                            <p class="mb-2">Lorem ipsum dolor sit amet, consecte adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore.</p>
+                            <p class="mb-2">The 2024 Amatech LASU Students Representatives (SRC) Election is your chance to elect leaders who will amplify your concerns and bring positive changeS to our community.</p>
+                        </div>
+
+                        <div class="flex flex-col" style=" margin-right: .5em; line-height: 40px;">
+                            <!-- <span>Countdown Timer:</span> -->
+                            <span class="" style="font-size: 3.5em;">08<span class="text-xl">m</span> : 16<span class="text-lg">s</span></span>
                         </div>
                     </div>
                 </div>
@@ -58,30 +74,32 @@
 
 
     <!-- ELECTION POSITION CARD  -->
-    <div class="rounded-lg" style="padding: 1em; background: #e9e9e9;">
-        <div class="flex items-center justify-between mx-3 mb-4" style="color: #414141;">
-            <h2 class="text-3xl font-semibold">President Position:</h2>
-            <span>2 interested candidates</span>
+
+    @foreach($positions as $position)
+    <div class="rounded-lg" style="padding: 1em; background: #e9e9e9; margin-bottom: 10px;">
+        <div class="flex items-center justify-between md:mx-3 mb-4" style="color: #414141;">
+            <h2 class="text-3xl font-semibold">{{ $position->name}} Position:</h2>
+            <span class="text-right md:text-left">{{ $position->candidate_count}} interested candidates</span>
         </div>
 
-        <div class="flex flex-col md:flex-row items-center justify-between" style="gap: 2.5em;">
-            <div class="flex-1 w-full" style="">
+        <div class="grid grid-container gap-3">
+            @foreach($candidates->where('position_id', $position->id) as $candidate)
                 <!-- Card start -->
-                <div class="bg-white dark:bg-gray-900 rounded-xl overflow-hidden shadow-lg">
+                <div class="max-w-smmx-auto bg-white dark:bg-gray-900 rounded-xl overflow-hidden shadow-lg">
                     <div class="border-b px-4 pb-6">
                         <div class="text-center my-4">
                             <img class="h-32 w-32 rounded-full border-4 border-white dark:border-gray-800 mx-auto my-4"
                                 src="{{asset('images/avatarmale.webp')}}" alt="">
                             <div class="py-2">
-                                <h3 class="font-bold text-2xl text-gray-800 dark:text-white mb-1">Nureni Jamiu O.</h3>
+                                <h3 class="font-bold text-2xl text-gray-800 dark:text-white mb-1 capitalize">{{ $candidate->name }}</h3>
                                 <div class="inline-flex text-gray-700 dark:text-gray-200 items-center">
                                     <span class="text-sm text-gray-600 dark:text-gray-200">Position vying for: </span>
-                                    President
+                                    {{ $candidate->position->name}}
                                 </div>
                                 <br>
                                 <div class="inline-flex text-gray-700 dark:text-gray-200 items-center">
                                     <span class="text-sm text-gray-600 dark:text-gray-200">Level: </span>
-                                    300L
+                                    {{ $candidate->level}}
                                 </div>
                             </div>
                         </div>
@@ -94,41 +112,8 @@
                     </div>
                 </div>
                 <!-- Card end -->
-            </div>
-
-            <div class="hidden md:flex border" style="height: 6em; border-color: #989898;"></div>
-
-            <div class="flex-1 w-full">
-                <!-- Card start -->
-                <div class="bg-white dark:bg-gray-900 rounded-xl overflow-hidden shadow-lg" style="margin-left: auto;">
-                    <div class="border-b px-4 pb-6">
-                        <div class="text-center my-4">
-                            <img class="h-32 w-32 rounded-full border-4 border-white dark:border-gray-800 mx-auto my-4"
-                                src="{{asset('images/avatar_hijab.webp')}}" alt="">
-                            <div class="py-2">
-                                <h3 class="font-bold text-2xl text-gray-800 dark:text-white mb-1">Aisha Jumuah</h3>
-                                <div class="inline-flex text-gray-700 dark:text-gray-200 items-center">
-                                    <span class="text-sm text-gray-600 dark:text-gray-200">Position vying for: </span>
-                                    President
-                                </div>
-                                <br>
-                                <div class="inline-flex text-gray-700 dark:text-gray-200 items-center">
-                                    <span class="text-sm text-gray-600 dark:text-gray-200">Level: </span>
-                                    200L
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex gap-2 px-2">
-                            <button
-                                class="flex-1 rounded-full bg-blue-600 dark:bg-blue-800 text-white dark:text-white antialiased font-bold hover:bg-green-800 dark:hover:bg-blue-900 px-4 py-2" style="background: #17B169;">
-                                Vote Candidate
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <!-- Card end -->
-            </div>
-
+            @endforeach
         </div>
     </div>
+    @endforeach
 </section>
