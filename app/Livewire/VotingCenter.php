@@ -28,6 +28,10 @@ class VotingCenter extends Component implements HasForms, HasActions
 
     public $loading = false;
 
+    public $now;
+
+    public $expirationDate;
+
     public function mount()
     {
 
@@ -36,6 +40,10 @@ class VotingCenter extends Component implements HasForms, HasActions
         $this->candidates = Candidate::with('position')->get();
 
         $this->candidates_count = Candidate::count();
+
+        $this->now = now();
+
+        $this->expirationDate = $this->now->addHours(8);
 
     }
 
@@ -80,4 +88,5 @@ class VotingCenter extends Component implements HasForms, HasActions
     {
         return view('livewire.voting-center');
     }
+
 }
