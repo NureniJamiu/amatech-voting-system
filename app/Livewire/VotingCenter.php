@@ -15,13 +15,13 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
-class VotingCenter extends Component implements HasForms, HasActions
+class VotingCenter extends Component implements HasActions, HasForms
 {
-
     use InteractsWithActions;
     use InteractsWithForms;
 
     public $positions;
+
     public $candidates;
 
     public $candidates_count;
@@ -66,8 +66,9 @@ class VotingCenter extends Component implements HasForms, HasActions
                         ->title('Sorry, you\'ve already voted a candidate for this position')
                         ->danger()
                         ->send();
+
                     return;
-                };
+                }
 
                 $vote = new Vote;
 
@@ -88,5 +89,4 @@ class VotingCenter extends Component implements HasForms, HasActions
     {
         return view('livewire.voting-center');
     }
-
 }

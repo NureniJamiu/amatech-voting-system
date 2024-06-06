@@ -20,9 +20,6 @@ use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 
-use Illuminate\Support\Facades\Auth;
-
-
 class AppPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
@@ -30,7 +27,7 @@ class AppPanelProvider extends PanelProvider
         return $panel
             ->default()
             ->id('app')
-            ->path("app")
+            ->path('app')
             ->login()
             ->registration()
             ->passwordReset()
@@ -44,10 +41,10 @@ class AppPanelProvider extends PanelProvider
             // ->emailVerificationRouteSlug('verify')
             ->userMenuItems([
                 MenuItem::make()
-                ->label('Admin')
-                ->icon('heroicon-o-cog-6-tooth')
-                ->url('/admin')
-                ->visible(fn (): bool => auth()->user()->isAdmin)
+                    ->label('Admin')
+                    ->icon('heroicon-o-cog-6-tooth')
+                    ->url('/admin')
+                    ->visible(fn (): bool => auth()->user()->isAdmin),
             ])
             ->colors([
                 'primary' => Color::Green,
@@ -74,10 +71,10 @@ class AppPanelProvider extends PanelProvider
                 SubstituteBindings::class,
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
-                ])
-                ->authMiddleware([
-                    CheckApprovedUser::class,
-                    Authenticate::class,
+            ])
+            ->authMiddleware([
+                CheckApprovedUser::class,
+                Authenticate::class,
             ]);
     }
 }

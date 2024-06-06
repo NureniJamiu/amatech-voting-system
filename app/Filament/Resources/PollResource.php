@@ -3,9 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\PollResource\Pages;
-use App\Filament\Resources\PollResource\RelationManagers;
 use App\Models\Poll;
-use Filament\Forms;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -14,8 +12,6 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class PollResource extends Resource
 {
@@ -26,7 +22,6 @@ class PollResource extends Resource
     protected static ?string $navigationGroup = 'Ballot Administration';
 
     protected static ?int $navigationSort = 1;
-
 
     public static function form(Form $form): Form
     {
@@ -39,18 +34,18 @@ class PollResource extends Resource
                         TextInput::make('title'),
                         Textarea::make('description'),
                         Toggle::make('is_active')->label('active'),
-                    ])
+                    ]),
             ])->columns(3);
     }
 
     public static function table(Table $table): Table
     {
         return $table
-        ->columns([
-            Tables\Columns\TextColumn::make('title')->searchable(),
-            Tables\Columns\TextColumn::make('description'),
-            Tables\Columns\IconColumn::make('is_active')->boolean()->label('Status'),
-        ])
+            ->columns([
+                Tables\Columns\TextColumn::make('title')->searchable(),
+                Tables\Columns\TextColumn::make('description'),
+                Tables\Columns\IconColumn::make('is_active')->boolean()->label('Status'),
+            ])
             ->filters([
                 //
             ])

@@ -12,7 +12,7 @@ class Candidate extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'position_id', 'about', 'image', 'level'
+        'name', 'position_id', 'about', 'image', 'level',
     ];
 
     public function position(): BelongsTo

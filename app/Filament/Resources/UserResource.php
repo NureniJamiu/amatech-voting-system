@@ -3,18 +3,13 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\UserResource\Pages;
-use App\Filament\Resources\UserResource\RelationManagers;
 use App\Models\User;
 use App\Providers\UserApproved;
 use App\Providers\UserRejected;
-use Filament\Forms;
 use Filament\Forms\Form;
-use Filament\Resources\Components\Tab;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class UserResource extends Resource
 {
@@ -24,7 +19,6 @@ class UserResource extends Resource
 
     protected static ?string $navigationGroup = 'User management';
 
-
     public static function form(Form $form): Form
     {
         return $form
@@ -32,8 +26,6 @@ class UserResource extends Resource
                 //
             ]);
     }
-
-    
 
     public static function table(Table $table): Table
     {
@@ -50,25 +42,25 @@ class UserResource extends Resource
                 // Tables\Actions\EditAction::make(),
                 // Tables\Actions\ActionGroup::make([
 
-                    Tables\Actions\Action::make('Approve')
-                        ->action(function (User $record ) {
-                            $record->user_approved_at = true;
-                            $record->save();
+                Tables\Actions\Action::make('Approve')
+                    ->action(function (User $record) {
+                        $record->user_approved_at = true;
+                        $record->save();
 
-                            // dispatch approve email event
-                            UserApproved::dispatch($record);
-                        })
-                        ->requiresConfirmation(),
-                    Tables\Actions\Action::make('Reject')
-                        ->action(function (User $record ) {
-                            $record->delete();
+                        // dispatch approve email event
+                        UserApproved::dispatch($record);
+                    })
+                    ->requiresConfirmation(),
+                Tables\Actions\Action::make('Reject')
+                    ->action(function (User $record) {
+                        $record->delete();
 
-                            //dispatch reject email event
-                            UserRejected::dispatch($record);
-                        })
-                        ->color('danger')
-                        ->requiresConfirmation()
-                ])
+                        //dispatch reject email event
+                        UserRejected::dispatch($record);
+                    })
+                    ->color('danger')
+                    ->requiresConfirmation(),
+            ])
             // ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -92,6 +84,4 @@ class UserResource extends Resource
             'edit' => Pages\EditUser::route('/{record}/edit'),
         ];
     }
-
-
 }

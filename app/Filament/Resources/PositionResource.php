@@ -3,10 +3,8 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\PositionResource\Pages;
-use App\Filament\Resources\PositionResource\RelationManagers;
 use App\Models\Poll;
 use App\Models\Position;
-use Filament\Forms;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
@@ -15,8 +13,6 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class PositionResource extends Resource
 {
@@ -27,7 +23,6 @@ class PositionResource extends Resource
     protected static ?string $navigationGroup = 'Ballot Administration';
 
     protected static ?int $navigationSort = 2;
-
 
     public static function form(Form $form): Form
     {
@@ -45,7 +40,7 @@ class PositionResource extends Resource
                             ->preload()
                             ->native(false),
                         Textarea::make('description'),
-                    ])
+                    ]),
             ]);
     }
 

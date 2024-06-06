@@ -3,15 +3,11 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\VoteResource\Pages;
-use App\Filament\Resources\VoteResource\RelationManagers;
 use App\Models\Vote;
-use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class VoteResource extends Resource
 {
@@ -22,7 +18,6 @@ class VoteResource extends Resource
     protected static ?string $navigationGroup = 'Ballot Administration';
 
     protected static ?int $navigationSort = 4;
-
 
     public static function form(Form $form): Form
     {

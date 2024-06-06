@@ -3,22 +3,17 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\CandidateResource\Pages;
-use App\Filament\Resources\CandidateResource\RelationManagers;
 use App\Models\Candidate;
 use App\Models\Position;
-use Filament\Forms;
 use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 // use Filament\Infolists\Components\Section;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
-use Filament\Infolists\Components\Split;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class CandidateResource extends Resource
 {
@@ -33,18 +28,18 @@ class CandidateResource extends Resource
     public static function form(Form $form): Form
     {
         return $form
-        ->schema([
+            ->schema([
                 Section::make([
                     TextInput::make('name'),
                     TextInput::make('image'),
                     // FileUpload::make('image'),
 
                     Select::make('position_id')
-                            ->label('Post vying for')
-                            ->options(Position::all()->pluck('name', 'id'))
-                            ->searchable()
-                            ->preload()
-                            ->native(false),
+                        ->label('Post vying for')
+                        ->options(Position::all()->pluck('name', 'id'))
+                        ->searchable()
+                        ->preload()
+                        ->native(false),
 
                     Select::make('level')
                         ->options([
@@ -52,18 +47,18 @@ class CandidateResource extends Resource
                             '200L' => '200 Level',
                             '300L' => '300 Level',
                             '400L' => '400 Level',
-                            '500L' => '500 Level'
+                            '500L' => '500 Level',
                         ])
                         ->searchable()
                         ->native(false),
-                    ])->columns(2),
+                ])->columns(2),
 
-                    Section::make([
-                        
-                        MarkdownEditor::make('about'),
-                        ]),
+                Section::make([
 
-                    ]);
+                    MarkdownEditor::make('about'),
+                ]),
+
+            ]);
     }
 
     public static function table(Table $table): Table

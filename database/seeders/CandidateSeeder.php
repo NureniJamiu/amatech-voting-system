@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -15,7 +14,7 @@ class CandidateSeeder extends Seeder
     {
         DB::table('candidates')->insert([
             'name' => 'Nureni Jamiu',
-            'level' => "400L",
+            'level' => '400L',
             'image' => 'test image',
             'about' => 'This is a test bio',
             'position_id' => 1,
@@ -25,7 +24,7 @@ class CandidateSeeder extends Seeder
 
         DB::table('candidates')->insert([
             'name' => 'Gbemisola Adeshina',
-            'level' => "200L",
+            'level' => '200L',
             'image' => 'test image',
             'about' => 'This is a test bio',
             'position_id' => 2,
@@ -34,7 +33,7 @@ class CandidateSeeder extends Seeder
         ]);
         DB::table('candidates')->insert([
             'name' => 'Maleeq Mustaphar',
-            'level' => "200L",
+            'level' => '200L',
             'image' => 'test image',
             'about' => 'This is a test bio',
             'position_id' => 2,
@@ -44,7 +43,7 @@ class CandidateSeeder extends Seeder
 
         DB::table('candidates')->insert([
             'name' => 'Daniel Adetimehin',
-            'level' => "400L",
+            'level' => '400L',
             'image' => 'test image',
             'about' => 'This is a test bio',
             'position_id' => 1,
@@ -54,7 +53,7 @@ class CandidateSeeder extends Seeder
 
         DB::table('candidates')->insert([
             'name' => 'Wasiu Hajara',
-            'level' => "400L",
+            'level' => '400L',
             'image' => 'test image',
             'about' => 'This is a test bio',
             'position_id' => 3,
@@ -64,7 +63,7 @@ class CandidateSeeder extends Seeder
 
         DB::table('candidates')->insert([
             'name' => 'Akinmuseye Victoria',
-            'level' => "300L",
+            'level' => '300L',
             'image' => 'test image',
             'about' => 'This is a test bio',
             'position_id' => 3,
@@ -74,7 +73,7 @@ class CandidateSeeder extends Seeder
 
         DB::table('candidates')->insert([
             'name' => 'Fasomo Tijani',
-            'level' => "300L",
+            'level' => '300L',
             'image' => 'test image',
             'about' => 'This is a test bio',
             'position_id' => 4,
@@ -84,7 +83,7 @@ class CandidateSeeder extends Seeder
 
         DB::table('candidates')->insert([
             'name' => 'Tolani Bamidele',
-            'level' => "100L",
+            'level' => '100L',
             'image' => 'test image',
             'about' => 'This is a test bio',
             'position_id' => 4,

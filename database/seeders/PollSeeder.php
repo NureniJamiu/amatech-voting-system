@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -15,7 +14,7 @@ class PollSeeder extends Seeder
     {
         DB::table('polls')->insert([
             'title' => '2024 Amatech Lasu SRC Vote',
-            'description' => "This is a test description",
+            'description' => 'This is a test description',
             'is_active' => 0,
             'created_at' => now(),
             'updated_at' => now(),

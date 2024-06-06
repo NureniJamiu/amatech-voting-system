@@ -11,13 +11,11 @@ class Vote extends Model
     use HasFactory;
 
     protected $fillable = [
-        'candidate_name', 'candidate_position', 'voter_id' 
+        'candidate_name', 'candidate_position', 'voter_id',
     ];
-
 
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
-
 }
