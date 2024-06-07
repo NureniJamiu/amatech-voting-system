@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Candidate;
+use App\Models\Poll;
 use App\Models\Position;
 use App\Models\Vote;
 use Filament\Actions\Action;
@@ -43,7 +44,14 @@ class VotingCenter extends Component implements HasActions, HasForms
 
         $this->now = now();
 
-        $this->expirationDate = $this->now->addHours(8);
+        // Assuming there's only one active poll
+        $poll = Poll::first();
+
+        if ($poll) {
+            $this->expirationDate = $poll->end_time;
+        } else {
+            $this->expirationDate = null;
+        }
 
     }
 

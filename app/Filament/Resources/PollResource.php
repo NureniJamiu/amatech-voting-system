@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\PollResource\Pages;
 use App\Models\Poll;
+use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -31,8 +32,13 @@ class PollResource extends Resource
                     ->description('Set up a new polling unit effortlessly. Your administrative control starts here.')
                     ->aside()
                     ->schema([
-                        TextInput::make('title'),
-                        Textarea::make('description'),
+                        TextInput::make('title')
+                            ->placeholder('Enter poll title'),
+                        Textarea::make('description')
+                            ->placeholder('Enter poll description'),
+                        DateTimePicker::make('end_time')
+                            ->format($format = 'Y-m-d H:i:s')
+                            ->placeholder('Set poll end time'),
                         Toggle::make('is_active')->label('active'),
                     ]),
             ])->columns(3);
@@ -45,6 +51,7 @@ class PollResource extends Resource
                 Tables\Columns\TextColumn::make('title')->searchable(),
                 Tables\Columns\TextColumn::make('description'),
                 Tables\Columns\IconColumn::make('is_active')->boolean()->label('Status'),
+                Tables\Columns\TextColumn::make('end_time'),
             ])
             ->filters([
                 //

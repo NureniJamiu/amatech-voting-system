@@ -11,7 +11,12 @@ class Poll extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title', 'description', 'is_active',
+        'title', 'description', 'is_active', 'end_time',
+    ];
+
+    protected $casts = [
+        'is_active' => 'boolean',
+        'end_time' => 'datetime',
     ];
 
     public function position(): HasMany

@@ -63,8 +63,12 @@
                         </div>
 
                         <div class="flex flex-col" style=" margin-right: .5em; line-height: 40px;">
+                            @php
+                                use Carbon\Carbon;
+                                $expirationDateTime = Carbon::parse($expirationDate);
+                            @endphp
                             <span style="text-align: center;">Election ends in:</span>
-                            <x-countdown :expires="$expirationDate" class="text-lg">
+                            <x-countdown :expires="$expirationDateTime" class="text-lg">
                                 <span x-text="timer.hours" style="font-size: 2.2em;">{{ $component->hours() }}</span> H
                                 <span x-text="timer.minutes" style="font-size: 2.2em;">{{ $component->minutes() }}</span> M
                                 <span x-text="timer.seconds" style="font-size: 2.2em;">{{ $component->seconds() }}</span> S
